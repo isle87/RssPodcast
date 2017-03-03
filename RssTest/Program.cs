@@ -7,24 +7,23 @@ using System.Net;
 using System.Xml;
 using System.IO;
 
-namespace RssTest
+namespace RssPodcast
 {
     class Program
     {
-        private static string site = "http://podcast-ufo.fail/?feed=podcast";
+        private static string site = "http://www.pietsmiet.de/pietcast/feed/podcast/";
         static void Main(string[] args)
         {
-            WebClient wc = new WebClient();
-            XmlDocument raw = new XmlDocument();
-            raw.Load(site);
-
-            XmlNode rssTitel = raw.SelectSingleNode("rss/channel/title");
-            string title = rssTitel != null ? rssTitel.InnerText : "N/A";
-            Console.WriteLine("Titel: " + title);
-
-
             RssPodcast pod = new RssPodcast(site);
+            Console.WriteLine("Title: " + pod.Title);
 
+            foreach (RssPodcastItem item in pod.Items)
+            {
+                if (item.Published <= new DateTime(2017, 1, 1))
+                    continue;
+                Console.WriteLine(new string('-',10));
+                Console.WriteLine(item.ToString());
+            }
             Console.ReadKey();
         }
     }

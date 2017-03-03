@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RssTest
+namespace RssPodcast
 {
     class RssPodcastItem
     {
@@ -14,5 +14,10 @@ namespace RssTest
         public Uri Mp3 { get; set; }
         public DateTime Published { get; set; }
         // TODO: Implement duration
+
+        public override string ToString()
+        {
+            return String.Format("Titel {0}\nDescription: {1}\nPublished: {2}", Title, Description, Published.ToString());
+        }
     }
 }

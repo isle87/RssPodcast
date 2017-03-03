@@ -8,7 +8,7 @@ using System.Xml;
 using System.Net;
 using System.IO;
 
-namespace RssTest
+namespace RssPodcast
 {
     class RssPodcast
     {
